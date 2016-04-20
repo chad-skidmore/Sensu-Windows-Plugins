@@ -2,7 +2,7 @@
   "checks": {
     "check-windows-ram": {
       "type": "standard",
-      "command": "C:\\etc\\sensu\\plugins\\check-windows-ram.rb 85 95",
+      "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo C:\\etc\\sensu\\plugins\\check-windows-ram.rb 85 95",
       "handler": "email",
       "subscribers": [ "windows" ],
       "interval": 30,
