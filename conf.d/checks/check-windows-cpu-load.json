@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "check-windows-cpu-load": {
+      "type": "standard",
+      "command": "C:\\etc\\sensu\\plugins\\check-windows-cpu-load.ps1 85 95",
+      "handler": "email",
+      "subscribers": [ "windows" ],
+      "interval": 30,
+      "notification": "CPU Load Check Failed",
+      "occurrences": 10
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "metric-windows-uptime": {
+      "type": "metric",
+      "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo C:\\etc\\sensu\\plugins\\metric-windows-uptime.ps1",
+      "handlers": [ "graphite" ],
+      "subscribers": [ "windows" ],
+      "interval": 30
+    }
+  }
+}

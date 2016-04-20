@@ -1,0 +1,13 @@
+{
+  "checks": {
+    "check-windows-disk": {
+      "type": "standard",
+      "command": "C:\\etc\\sensu\\plugins\\check-windows-disk.ps1 85 95 abz",
+      "handler": "email",
+      "subscribers": [ "windows" ],
+      "interval": 30,
+      "notification": "Disk Check Failed",
+      "occurrences": 10
+    }
+  }
+}

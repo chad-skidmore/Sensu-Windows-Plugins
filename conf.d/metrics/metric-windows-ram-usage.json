@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "metric-windows-ram-usage": {
+      "type": "metric",
+      "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo C:\\etc\\sensu\\plugins\\metric-windows-ram-usage.ps1",
+      "handlers": [ "graphite" ],
+      "subscribers": [ "windows" ],
+      "interval": 30
+    }
+  }
+}
