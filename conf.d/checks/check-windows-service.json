@@ -4,7 +4,7 @@
       "type": "standard",
       "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\check-windows-service.ps1",
       "handlers": [ "email" ],
-      "subscribers": [ ],
+      "subscribers": [ "windows" ],
       "refresh": 600,
       "interval": 30
     }

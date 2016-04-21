@@ -4,7 +4,7 @@
       "type": "standard",
       "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\check-windows-cpu-load.ps1 90 95",
       "handlers": [ "email" ],
-      "subscribers": [ ],
+      "subscribers": [ "windows" ],
       "refresh": 600,
       "interval": 30
     }
