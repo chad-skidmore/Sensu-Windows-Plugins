@@ -1,5 +1,5 @@
 #
-# metric-windows-uptime
+# metric-windows-uptime.ps1
 #
 # DESCRIPTION:
 # This plugin collects and outputs the Uptime in seconds in a Graphite acceptable format.

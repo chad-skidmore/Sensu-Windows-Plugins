@@ -1,5 +1,5 @@
 #
-# metric-windows-cpu-load
+# metric-windows-cpu-load.ps1
 #
 # DESCRIPTION:
 # This plugin collects and outputs the CPU Usage in a Graphite acceptable format.

@@ -1,5 +1,5 @@
 #
-# metric-windows-network
+# metric-windows-network.ps1
 #
 # DESCRIPTION:
 # This plugin collects and outputs all Network Adapater Statistic in a Graphite acceptable format.

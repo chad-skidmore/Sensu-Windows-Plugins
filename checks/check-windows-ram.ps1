@@ -1,5 +1,5 @@
 #
-# check-windows-ram.rb
+# check-windows-ram.ps1
 #
 # DESCRIPTION:
 # This plugin collects the RAM Usage and compares WARNING and CRITICAL thresholds.
@@ -31,10 +31,12 @@ $Value = [Math]::Round($Value,2)
 
 If ($Value -gt $CRITICAL) {
   Write-Host CheckWindowsRAMLoad CRITICAL: CPU at $Value%.
-  break }
+  Exit 2 }
 
 If ($Value -gt $WARNING) {
   Write-Host CheckWindowsRAMLoad WARNING: CPU at $Value%.
-  break }
+  Exit 1 }
 
-Else { Write-Host CheckWindowsRAMLoad OK: RAM at $Value%. }
+Else {
+  Write-Host CheckWindowsRAMLoad OK: RAM at $Value%.
+  Exit 0 }

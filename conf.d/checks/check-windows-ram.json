@@ -2,12 +2,11 @@
   "checks": {
     "check-windows-ram": {
       "type": "standard",
-      "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo C:\\etc\\sensu\\plugins\\check-windows-ram.rb 85 95",
-      "handler": "email",
-      "subscribers": [ "windows" ],
-      "interval": 30,
-      "notification": "Ram Check Failed",
-      "occurrences": 10
+      "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\check-windows-ram.ps1 90 95",
+      "handlers": [ "email" ],
+      "subscribers": [ ],
+      "refresh": 600,
+      "interval": 30
     }
   }
 }

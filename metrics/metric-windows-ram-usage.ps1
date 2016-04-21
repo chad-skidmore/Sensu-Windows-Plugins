@@ -1,5 +1,5 @@
 #
-# metric-windows-ram-usage
+# metric-windows-ram-usage.ps1
 #
 # DESCRIPTION:
 # This plugin collects and outputs the Ram Usage in a Graphite acceptable format.

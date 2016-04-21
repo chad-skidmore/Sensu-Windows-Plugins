@@ -2,7 +2,7 @@
   "checks": {
     "metric-windows-network": {
       "type": "metric",
-      "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo C:\\etc\\sensu\\plugins\\metric-windows-network.ps1",
+      "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\metric-windows-network.ps1",
       "handlers": [ "graphite" ],
       "subscribers": [ "windows" ],
       "interval": 30

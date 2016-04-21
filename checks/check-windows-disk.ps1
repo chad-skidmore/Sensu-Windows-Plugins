@@ -1,5 +1,5 @@
 #
-# check-windows-disk.rb
+# check-windows-disk.ps1
 #
 # DESCRIPTION:
 # This plugin collects the Disk Usage and and compares WARNING and CRITICAL thresholds.
@@ -41,13 +41,18 @@ foreach ($ObjDisk in $AllDisks)
 
   If ($UsedPercentage -gt $CRITICAL) {
     Write-Host CheckDisk CRITICAL: $ObjDisk.DeviceID $UsedPercentage%.
-    $BrownChickenBrownCow =+ 1
-  break }
+    $BrownChickenBrownCow = 2
+  Break }
 
   If ($UsedPercentage -gt $WARNING) {
     Write-Host CheckDisk WARNING: $ObjDisk.DeviceID $UsedPercentage%.
-    $BrownChickenBrownCow =+ 1
-  break }
+    If ($BrownChickenBrownCow -ne 2) { $BrownChickenBrownCow = 1 }
+  Break }
 }
 
-If ($BrownChickenBrownCow -eq 0) { Write-Host CheckDisk OK: All disk usage under $WARNING%. }
+If ($BrownChickenBrownCow -eq 0) {
+  Write-Host CheckDisk OK: All disk usage under $WARNING%.
+  Exit $BrownChickenBrownCow
+}
+
+Else { Exit $BrownChickenBrownCow }

@@ -1,5 +1,5 @@
 #
-# metric-windows-disk-usage
+# metric-windows-disk-usage.ps1
 #
 # DESCRIPTION:
 # This plugin collects and outputs Disk Usage metrics in a Graphite acceptable format.

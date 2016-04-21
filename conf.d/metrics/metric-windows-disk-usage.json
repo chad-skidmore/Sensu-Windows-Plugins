@@ -2,7 +2,7 @@
   "checks": {
     "metric-windows-disk-usage": {
       "type": "metric",
-      "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo C:\\etc\\sensu\\plugins\\metric-windows-disk-usage.ps1",
+      "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\metric-windows-disk-usage.ps1",
       "handlers": [ "graphite" ],
       "subscribers": [ "windows" ],
       "interval": 30

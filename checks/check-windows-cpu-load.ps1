@@ -1,5 +1,5 @@
 #
-# check-windows-cpu-load.rb
+# check-windows-cpu-load.ps1
 #
 # DESCRIPTION:
 # This plugin collects the CPU Usage and compares WARNING and CRITICAL thresholds.
@@ -28,10 +28,12 @@ $Value = [Math]::Round($All.CookedValue,2)
 
 If ($Value -gt $CRITICAL) {
   Write-Host CheckWindowsCpuLoad CRITICAL: CPU at $Value%.
-  break }
+  Exit 2 }
 
 If ($Value -gt $WARNING) {
   Write-Host CheckWindowsCpuLoad WARNING: CPU at $Value%.
-  break }
+  Exit 1 }
 
-Else { Write-Host CheckWindowsCpuLoad OK: CPU at $Value%. }
+Else {
+  Write-Host CheckWindowsCpuLoad OK: CPU at $Value%.
+  Exit 0 }
