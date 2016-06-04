@@ -1,11 +1,10 @@
-#
 # check-windows-cpu-load.ps1
 #
 # DESCRIPTION:
 # This plugin collects the CPU Usage and compares WARNING and CRITICAL thresholds.
 #
 # OUTPUT:
-# Plain Text
+# Check Result in Plain Text
 #
 # PLATFORMS:
 # Windows
@@ -16,15 +15,16 @@
 [CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]
-   [string]$WARNING,
+   [int]$WARNING,
 
    [Parameter(Mandatory=$True,Position=2)]
-   [string]$CRITICAL
+   [int]$CRITICAL
 )
 
-$All = (Get-Counter -Counter "\Processor(_Total)\% Processor Time" -SampleInterval 1 -MaxSamples 1).CounterSamples
+$ThisProcess = Get-Process -Id $pid
+$ThisProcess.PriorityClass = "BelowNormal"
 
-$Value = [Math]::Round($All.CookedValue,2)
+$Value = (Get-WmiObject CIM_Processor).LoadPercentage
 
 If ($Value -gt $CRITICAL) {
   Write-Host CheckWindowsCpuLoad CRITICAL: CPU at $Value%.

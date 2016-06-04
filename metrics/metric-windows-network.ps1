@@ -1,11 +1,10 @@
-#
 # metric-windows-network.ps1
 #
 # DESCRIPTION:
 # This plugin collects and outputs all Network Adapater Statistic in a Graphite acceptable format.
 #
 # OUTPUT:
-# metric data
+# Metric Data in Plain Text
 #
 # PLATFORMS:
 # Windows
@@ -13,22 +12,13 @@
 # DEPENDENCIES:
 # Powershell
 #
-$AllAdapters = Get-Counter -Counter "\Network Interface(*)\*"
+$ThisProcess = Get-Process -Id $pid
+$ThisProcess.PriorityClass = "BelowNormal"
 
-foreach ($ObjNet in $AllAdapters.CounterSamples) 
+foreach ($ObjNet in (Get-Counter -Counter "\Network Interface(*)\*").CounterSamples) 
 { 
-  $Path = $ObjNet.Path
-  $Path = $Path.Trim("\\")
-  $Path = $Path -replace "\\","."
-  $Path = $Path -replace " ","_"
-  $Path = $Path -replace "[(]","."
-  $Path = $Path -replace "[)]",""
-  $Path = $Path -replace "[\{\}]",""
-  $Path = $Path -replace "[\[\]]",""
-
-  $Value = $ObjNet.CookedValue
-  $Value = [Math]::Round($Value,0)
-
+  $Path = ($ObjNet.Path).Trim("\\") -replace "\\","." -replace " ","_" -replace "[(]","." -replace "[)]","" -replace "[\{\}]","" -replace "[\[\]]",""
+  $Value = [System.Math]::Round(($ObjNet.CookedValue),0)
   $Time = [int][double]::Parse((Get-Date -UFormat %s))
 
   Write-Host "$Path $Value $Time"

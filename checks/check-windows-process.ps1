@@ -1,11 +1,10 @@
-#
 # check-windows-process.ps1
 #
 # DESCRIPTION:
 # This plugin checks whether a User-inputted process is running or not.
 #
 # OUTPUT:
-# Plain Text
+# Check Result in Plain Text
 #
 # PLATFORMS:
 # Windows
@@ -13,6 +12,9 @@
 # DEPENDENCIES:
 # Powershell
 #
+$ThisProcess = Get-Process -Id $pid
+$ThisProcess.PriorityClass = "BelowNormal"
+
 [CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]

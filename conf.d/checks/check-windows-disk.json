@@ -2,7 +2,7 @@
   "checks": {
     "check-windows-disk": {
       "type": "standard",
-      "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\check-windows-disk.ps1 90 95",
+      "command": "Powershell.exe -NonInteractive -NoProfile -ExecutionPolicy Bypass -NoLogo -File C:\\etc\\sensu\\plugins\\check-windows-disk.ps1 90 95 ab",
       "handlers": [ "email" ],
       "subscribers": [ "windows" ],
       "refresh": 600,

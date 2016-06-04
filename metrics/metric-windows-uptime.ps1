@@ -1,11 +1,10 @@
-#
 # metric-windows-uptime.ps1
 #
 # DESCRIPTION:
 # This plugin collects and outputs the Uptime in seconds in a Graphite acceptable format.
 #
 # OUTPUT:
-# metric data
+# Metric Data in Plain Text
 #
 # PLATFORMS:
 # Windows
@@ -13,17 +12,13 @@
 # DEPENDENCIES:
 # Powershell
 #
-$All = (Get-Counter "\System\System Up Time").CounterSamples
+$ThisProcess = Get-Process -Id $pid
+$ThisProcess.PriorityClass = "BelowNormal"
 
-$Path = $All.Path
-$Path = $Path.Trim("\\")
-$Path = $Path -replace " ","_"
-$Path = $Path -replace "\\","."
-$Path = $Path -replace "[\{\}]",""
-$Path = $Path -replace "[\[\]]",""
+$Counter = ((Get-Counter "\System\System Up Time").CounterSamples)
 
-$Value = [Math]::Truncate($All.CookedValue)
-
+$Path = ($Counter.Path).Trim("\\") -replace " ","_" -replace "\\","." -replace "[\{\}]","" -replace "[\[\]]",""
+$Value = [System.Math]::Truncate($Counter.CookedValue)
 $Time = [int][double]::Parse((Get-Date -UFormat %s))
 
 Write-Host "$Path $Value $Time"

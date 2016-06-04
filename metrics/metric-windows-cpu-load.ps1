@@ -1,11 +1,10 @@
-#
 # metric-windows-cpu-load.ps1
 #
 # DESCRIPTION:
 # This plugin collects and outputs the CPU Usage in a Graphite acceptable format.
 #
 # OUTPUT:
-# metric data
+# Metric Data in Plain Text
 #
 # PLATFORMS:
 # Windows
@@ -13,12 +12,13 @@
 # DEPENDENCIES:
 # Powershell
 #
-$All = (Get-Counter -Counter "\Processor(_Total)\% Processor Time" -SampleInterval 1 -MaxSamples 1).CounterSamples
+$ThisProcess = Get-Process -Id $pid
+$ThisProcess.PriorityClass = "BelowNormal"
 
 $Path = hostname
 $Path = $Path.ToLower()
 
-$Value = [Math]::Round($All.CookedValue,2)
+$Value = (Get-WmiObject CIM_Processor).LoadPercentage
 
 $Time = [int][double]::Parse((Get-Date -UFormat %s))
 

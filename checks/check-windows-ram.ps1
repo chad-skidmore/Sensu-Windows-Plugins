@@ -1,11 +1,10 @@
-#
 # check-windows-ram.ps1
 #
 # DESCRIPTION:
 # This plugin collects the RAM Usage and compares WARNING and CRITICAL thresholds.
 #
 # OUTPUT:
-# Plain Text
+# Check Result in Plain Text
 #
 # PLATFORMS:
 # Windows
@@ -16,18 +15,18 @@
 [CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]
-   [string]$WARNING,
+   [int]$WARNING,
 
    [Parameter(Mandatory=$True,Position=2)]
-   [string]$CRITICAL
+   [int]$CRITICAL
 )
 
-$FreeMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").FreePhysicalMemory
-$TotalMemory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem").TotalVisibleMemorySize
+$ThisProcess = Get-Process -Id $pid
+$ThisProcess.PriorityClass = "BelowNormal"
 
-$Value = ($TotalMemory - $FreeMemory) / $TotalMemory
-$Value = $Value * 100
-$Value = [Math]::Round($Value,2)
+$Memory = (Get-WmiObject -Query "SELECT TotalVisibleMemorySize, FreePhysicalMemory FROM Win32_OperatingSystem")
+
+$Value = [System.Math]::Round(((($Memory.TotalVisibleMemorySize-$Memory.FreePhysicalMemory)/$Memory.TotalVisibleMemorySize)*100),2)
 
 If ($Value -gt $CRITICAL) {
   Write-Host CheckWindowsRAMLoad CRITICAL: CPU at $Value%.
