@@ -12,14 +12,14 @@
 # DEPENDENCIES:
 # Powershell
 #
-$ThisProcess = Get-Process -Id $pid
-$ThisProcess.PriorityClass = "BelowNormal"
-
 [CmdletBinding()]
 Param(
   [Parameter(Mandatory=$True,Position=1)]
    [string]$ServiceName
 )
+
+$ThisProcess = Get-Process -Id $pid
+$ThisProcess.PriorityClass = "BelowNormal"
 
 $Exists = Get-Service $ServiceName -ErrorAction SilentlyContinue
 
